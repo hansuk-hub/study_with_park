@@ -6,6 +6,13 @@ def index(request):
     return HttpResponse('<h1> Hello </h1>')
 
 def list(request) :
-    return render(request, 'list.html')
+    username = request.GET.get('username')
+    userpwd = request.GET.get('password')
+    usertitle = request.GET.get('usertitle')
+    usercontent = request.GET.get('usercont')
 
-git
+    return render(request, 'list.html', {'username':username, 'userpwd': userpwd, 'usertitle': usertitle, 'usercontent' :usercontent })
+
+def write(request) :
+    return render(request, 'write.html')
+
