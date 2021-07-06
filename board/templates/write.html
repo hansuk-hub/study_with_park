@@ -30,20 +30,20 @@
      <div class="articleBox">
     
         <table>
-        <form target="">
+        <form action="{% url 'board:gotolist' %}" method="POST">{% csrf_token %}
             <thead>
               <td>게시물 올리기</td> </thead>
             <tr>
-                <td><input placeholder="글쓴이의 이름" size="80"></td>
+                <td><input placeholder="글쓴이의 이름" size="80" name="username"></td>
             </tr>
             <tr>
-                <td><input placeholder="글 비밀번호" size="80"></td>
+                <td><input placeholder="글 비밀번호" size="80" name="password"></td>
             </tr>
             <tr>
-                <td><input placeholder="제목을 입력해주세요" size="80" ></td>
+                <td><input placeholder="제목을 입력해주세요" size="80" name="usertitle"></td>
             </tr>
             <tr>
-                <td><textarea id="filed" cols="80" rows="10" placeholder="내용을 입력해주세요"></textarea> 
+                <td><textarea id="filed" cols="80" rows="10" placeholder="내용을 입력해주세요" name="usercont"></textarea>
                 </td>
             </tr>
             <tr>
