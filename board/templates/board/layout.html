@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>Baord Study</title>
+<link href="{% static 'board/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- Main Container -->
+<div class="container">
+  <!-- Navigation -->
+  <header>
+    <section class="logo">
+            <a href="">
+    <h4 class="logo">ICON</h4>
+    </a>
+    </section>
+
+    <section class="searchBox">
+        <form>
+            <input type="text">
+        </form>
+    </section>
+    <section class="naviInfo">
+    <img src="{% static 'search.png' %}" width="30" height="30" alt=""/> </section>
+  </header>
+
+    {% block content %}
+    {% endblock %}
+
+<footer>
+     <section class="footer_banner" id="contact">
+        <ul>
+            <li><img src="{% static 'talk.png' %}" width="30" height="30" alt=""/></li>
+            <li><img src="{% static 'people.png' %}"  width="30" height="30" alt=""/></li>
+            <li><img src="{% static 'earth.png' %}" width="30" height="30" alt=""/></li>
+            <li><img src="{% static 'menu.png' %}" width="30" height="30" alt=""/></li>
+        </ul>
+    </section>
+  </footer>
+  <!-- Footer Section -->
+
+</div>
+<!-- Main Container Ends -->
+</body>
+</html>

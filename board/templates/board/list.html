@@ -1,34 +1,11 @@
-<!doctype html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
-<title>Baord Study</title>
-<link href="css/singlePageTemplate.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<!-- Main Container -->
-<div class="container"> 
-  <!-- Navigation -->
-  <header>
-    <section class="logo">
-            <a href="">
-    <h4 class="logo">ICON</h4>
-    </a>
-    </section>
+{% extends "board/layout.html" %}
 
-    <section class="searchBox">
-        <form>
-            <input type="text">
-        </form>
-    </section>
-    <section class="naviInfo">
-    <img src="images/search.png" width="30" height="30" alt=""/> </section>
-  </header>
+{% block content %}
 
   <!-- About Section -->
   <section class="about" id="about">
      <div class="articleBox">
-        <table>p
+        <table>
             <thead><td> <h1>
                     {{ usertitle }} /
                        {{ username }}
@@ -68,23 +45,4 @@
     </div>
 
   </section>
-
-  <!-- Parallax Section -->
-
-  <!-- More Info Section -->
-  <footer>
-     <section class="footer_banner" id="contact">
-        <ul>
-            <li><img src="images/talk.png" width="30" height="30" alt=""/></li>
-            <li><img src="images/people.png" width="30" height="30" alt=""/></li>
-            <li><img src="images/earth.png" width="30" height="30" alt=""/></li>
-            <li><img src="images/menu.png" width="30" height="30" alt=""/></li>
-        </ul>
-    </section>
-  </footer>
-  <!-- Footer Section -->
-
-</div>
-<!-- Main Container Ends -->
-</body>
-</html>
+{% endblock %}
