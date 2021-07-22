@@ -6,9 +6,9 @@
      <div class="articleBox">
     
         <table>
-        <form action="{% url 'board:postCreate' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <form action="{% url 'board:postUpdate' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
             <thead>
-              <td>게시물 올리기</td> </thead>
+              <td>게시물 올리기  {{ post.id }}</td> </thead>
             <tr>
                 <td><input placeholder="글쓴이의 이름" size="80" name="username"></td>
             </tr>

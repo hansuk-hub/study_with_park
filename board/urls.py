@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, gotolist, write, postCreate
+from .views import index, gotolist, write, postCreate, update
 
 
 urlpatterns = [
@@ -7,8 +7,7 @@ urlpatterns = [
     path('list/', gotolist, name='gotolist'),
     path('postCreate/', postCreate, name='postCreate'),
     path('write/', write, name='write'),
-    path('gotolist/', gotolist, name='gotolist')
-
-
+    path('gotolist/', gotolist, name='gotolist'),
+    path('update/<int:post_id>', update, name='update'),
 
 ]

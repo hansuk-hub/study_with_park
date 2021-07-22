@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from .form import PostForm
 from .models import *
 
 # Create your views here.
@@ -9,7 +10,11 @@ def index(request):
 
 
 def gotolist(request) :
-    return render ( request, 'board/lsit.html')
+    queryset = Post.objects.all()
+
+    return render ( request, 'board/list.html', {
+        'post_list' : queryset
+    })
 
 
 def postCreate(request) :
@@ -17,17 +22,18 @@ def postCreate(request) :
     userpwd = request.POST.get('password','')
     usertitle = request.POST.get('usertitle', '')
     usercontent = request.POST.get('usercont', '')
-    new_post = Post(title=usertitle, username = username, password = userpwd, content = usercontent)
+    photo = request.FILES.get('photo')
+    new_post = Post(title=usertitle, username = username, password = userpwd, content = usercontent, photo = photo)
     new_post.save()
-    return HttpResponseRedirect( reverse('index'))
+    return HttpResponseRedirect( reverse('board:gotolist'))
 
 
-    title = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    username = models.CharField(max_length=50)
-    content = models.TextField()
+def update(request, post_id) :
+    question = get_object_or_404(Post, pk=post_id)
+    form = PostForm(instance=question)
+    context = {'form': form}
 
-
+    return render(request, 'board/update.html', context)
 
 
 

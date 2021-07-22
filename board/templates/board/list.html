@@ -4,45 +4,33 @@
 
   <!-- About Section -->
   <section class="about" id="about">
-     <div class="articleBox">
+
+      {% for post in post_list %}
+      <div class="articleBox">
         <table>
             <thead><td> <h1>
-                    {{ usertitle }} /
-                       {{ username }}
+                    {{ post.title }} /
+                       {{ post.username }}
                 </h1>
             </td> </thead>
             <tr>
                 <td>
-                    {{ usercontent }}
+                    {{ post.content }}
                 </td>
             </tr>
             <tr>
-                <td>Like &nbsp;&nbsp; / &nbsp;&nbsp; Comment</td>
-            </tr>        
-        </table>
-    </div>
-      <div class="articleBox">
-        <table>
-            <thead><td>Title</td> </thead>
-            <tr>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td>
+                <td>
+                    {% if post.photo %}
+                    <img src="{{ post.photo.url }}" width="500"  height="200"/>
+                    {% endif %}
+                </td>
             </tr>
-            <tr>
-                <td>Like &nbsp;&nbsp; / &nbsp;&nbsp; Comment</td>
-            </tr>        
-        </table>
-    </div>
-      <div class="articleBox">
-        <table>
-            <thead><td>Title</td> </thead>
-            <tr>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td>
-            </tr>
-            <tr>
-                <td>Like &nbsp;&nbsp; / &nbsp;&nbsp; Comment</td>
-            </tr>        
-        </table>
-    </div>
 
+            <tr>
+                <td>Like {{ post.likes }} /  Comment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'board:update' post.id %}">Edit</a>&nbsp;&nbsp;Delete</td>
+            </tr>        
+        </table>
+      </div>
+      {% endfor %}
   </section>
 {% endblock %}
