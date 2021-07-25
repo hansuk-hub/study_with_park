@@ -27,7 +27,7 @@
             </tr>
 
             <tr>
-                <td>Like {{ post.likes }} /  Comment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'board:update' post.id %}">Edit</a>&nbsp;&nbsp;Delete</td>
+                <td>Like {{ post.likes }} /  Comment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'board:update' post.id %}">Edit</a>&nbsp;&nbsp;<a href="{% url 'board:delete' post.id %}">Delete</a></td>
             </tr>        
         </table>
       </div>

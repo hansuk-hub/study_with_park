@@ -6,20 +6,21 @@
      <div class="articleBox">
     
         <table>
-        <form action="{% url 'board:postUpdate' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <thead>
-              <td>게시물 올리기  {{ post.id }}</td> </thead>
+              <td>게시물 올리기 </td> </thead>
             <tr>
-                <td><input placeholder="글쓴이의 이름" size="80" name="username"></td>
+<!--                <td><input placeholder="글쓴이의 이름" size="80" name="username" value="{{ form.username.value|default_if_none:'' }}"></td>-->
+                <td><input placeholder="글쓴이의 이름" size="80" name="username" value="{{ post.username|default_if_none:'' }}"></td>
             </tr>
             <tr>
-                <td><input placeholder="글 비밀번호" size="80" name="password"></td>
+                <td><input placeholder="글 비밀번호" size="80" name="password" value="{{ post.password|default_if_none:'' }}"></td>
             </tr>
             <tr>
-                <td><input placeholder="제목을 입력해주세요" size="80" name="usertitle"></td>
+                <td><input placeholder="제목을 입력해주세요" size="80" name="title"  value="{{ post.title|default_if_none:'' }}"></td>
             </tr>
             <tr>
-                <td><textarea id="filed" cols="80" rows="10" placeholder="내용을 입력해주세요" name="usercont"></textarea>
+                <td><textarea id="filed" cols="80" rows="10" placeholder="내용을 입력해주세요" name="content">{{ post.content }}</textarea>
                 </td>
             </tr>
             <tr>
@@ -27,6 +28,7 @@
                         <input type="file" id="photo" name="photo"></input>
                 </td>
             </tr>
+            <input type="hidden" id="post_id" name="post_id" value="{{ post.id |default_if_none:''}}" >
             <tr>
                 <td><input type="submit" id="btnSubmit"></td>
  

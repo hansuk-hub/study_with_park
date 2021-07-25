@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .form import PostForm
@@ -29,13 +29,44 @@ def postCreate(request) :
 
 
 def update(request, post_id) :
-    question = get_object_or_404(Post, pk=post_id)
-    form = PostForm(instance=question)
-    context = {'form': form}
-
-    return render(request, 'board/update.html', context)
+    # post = get_object_or_404(Post, pk=post_id)
+    # form = PostForm(instance=post)
 
 
+    if request.method == "POST":
+        post = Post.objects.get(id=post_id)
+        post.username = request.POST['username']
+        post.title = request.POST['title']
+        post.password = request.POST['password']
+        post.content = request.POST['content']
+        post.save()
+
+        return HttpResponseRedirect(reverse('board:gotolist'))
+
+        # form = PostForm(request.POST, instance=post)
+        # if form.is_valid():
+        #     post = form.save(commit=False)
+        #     post.username = request.username
+        #     # question.modify_date = timezone.now()  # 수정일시 저장
+        #     post.save()
+        #     queryset = Post.objects.all()
+        #
+        #     return render(request, 'board/list.html', {
+        #         'post_list': queryset
+        #     })
+    else:
+        post = Post.objects.get(id=post_id)
+
+        return render(request, 'board/update.html', {
+            'post': post
+        })
+        # context = {'form': form}
+        # return render(request, 'board/update.html', context)
+
+def delete(request, post_id) :
+    post = Post.objects.get(id = post_id)
+    post.delete()
+    return HttpResponseRedirect( reverse('board:gotolist'))
 
 def write(reqeust) :
     return render (reqeust, 'board/write.html')

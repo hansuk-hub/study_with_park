@@ -14,5 +14,6 @@ class PostForm(forms.ModelForm):
             'content': '내용',
             'photo' : '파일',
 
+
         }
 
